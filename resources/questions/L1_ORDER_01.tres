@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L1"
+type = "order"
+question = "Ketuk unit data berikut secara berurutan sesuai proses enkapsulasi dari Layer Aplikasi (L7) hingga transmisi fisik (L1):"
+options = Array[String]([])
+correct_index = 0
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([0, 1, 2, 3, 4])
+explanation = "Enkapsulasi OSI mengemas data bertahap: Data mentah di L7-L5 dibungkus menjadi Segment di L4 (Transport), lalu Packet di L3 (Network), lalu Frame di L2 (Data Link), dan akhirnya dikonversi menjadi Bits di L1 (Physical)."

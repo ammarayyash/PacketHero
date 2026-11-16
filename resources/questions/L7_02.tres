@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L7"
+type = "mcq"
+question = "Protokol manakah yang bertugas menerjemahkan nama domain menjadi alamat IP di Layer Aplikasi?"
+options = Array[String](["DNS (Domain Name System)", "ARP (Address Resolution Protocol)", "DHCP (Dynamic Host Configuration Protocol)", "ICMP (Internet Control Message Protocol)"])
+correct_index = 0
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "DNS (Domain Name System) bekerja di Layer 7 untuk menerjemahkan nama domain seperti www.contoh.com menjadi IP address agar perangkat dapat saling terhubung."

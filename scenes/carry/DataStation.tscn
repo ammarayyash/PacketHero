@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://data_station_prop_001"]
+
+[ext_resource type="Script" path="res://scripts/carry/DataStation.gd" id="1_station"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment_new/item_checkpoint.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_station"]
+size = Vector2(48, 56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.04, 0.08, 0.15, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.8, 1, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DataStation" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_station")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_station")
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = -28.0
+theme_override_font_sizes/font_size = 11
+text = "STASIUN DATA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="."]
+visible = false
+z_index = 10
+offset_left = -120.0
+offset_top = -75.0
+offset_right = 120.0
+offset_bottom = -50.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bubble")
+theme_override_font_sizes/font_size = 10
+text = "Feedback..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

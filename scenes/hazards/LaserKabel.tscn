@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://laser_kabel_001"]
+
+[ext_resource type="Script" path="res://scripts/hazards/laser_kabel.gd" id="1_laser"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beam"]
+size = Vector2(200, 8)
+
+[node name="LaserKabel" type="Node2D"]
+script = ExtResource("1_laser")
+length = 200.0
+
+[node name="EmitterA" type="Node2D" parent="."]
+
+[node name="Body" type="ColorRect" parent="EmitterA"]
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 10.0
+color = Color(0.12, 0.16, 0.24, 1)
+
+[node name="LED" type="ColorRect" parent="EmitterA"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0.3, 0.8, 1, 1)
+
+[node name="EmitterB" type="Node2D" parent="."]
+position = Vector2(200, 0)
+
+[node name="Body" type="ColorRect" parent="EmitterB"]
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 10.0
+color = Color(0.12, 0.16, 0.24, 1)
+
+[node name="LED" type="ColorRect" parent="EmitterB"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0.3, 0.8, 1, 1)
+
+[node name="BeamArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeamArea"]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_beam")
+
+[node name="BeamVisual" type="ColorRect" parent="BeamArea"]
+visible = false
+offset_top = -4.0
+offset_right = 200.0
+offset_bottom = 4.0
+color = Color(0.2, 0.85, 1, 0.95)
+
+[node name="BeamCore" type="ColorRect" parent="BeamArea/BeamVisual"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 200.0
+offset_bottom = 6.0
+color = Color(0.9, 1, 1, 0.9)

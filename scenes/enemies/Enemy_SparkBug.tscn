@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://enemy_spark_bug"]
+
+[ext_resource type="Script" path="res://scripts/EnemyChaser.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy_spark_bug_frames.tres" id="2"]
+
+[sub_resource type="RectangleShape2D" id="Shape_body"]
+size = Vector2(40, 36)
+
+[sub_resource type="RectangleShape2D" id="Shape_hitbox"]
+size = Vector2(46, 40)
+
+[node name="SparkBug" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1")
+mode = 0
+hp = 1
+patrol_range = 140.0
+patrol_speed = 65.0
+chase_speed = 135.0
+detect_radius = 280.0
+attack_radius = 45.0
+exp_reward = 15
+walk_anim = "walk"
+attack_anim = "attack"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("Shape_body")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 4)
+shape = SubResource("Shape_hitbox")

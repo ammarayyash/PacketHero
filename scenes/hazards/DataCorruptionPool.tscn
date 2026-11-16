@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://data_corruption_pool_001"]
+
+[ext_resource type="Script" path="res://scripts/hazards/data_corruption_pool.gd" id="1_pool"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pool"]
+size = Vector2(120, 20)
+
+[node name="DataCorruptionPool" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_pool")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 10.0
+color = Color(0.52, 0.08, 0.62, 0.85)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.4, 0.9, 0.9)
+text = "[ CORRUPTED DATA ]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pool")

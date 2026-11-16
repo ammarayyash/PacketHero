@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L4"
+type = "mcq"
+question = "Three-way handshake TCP terdiri dari..."
+options = Array[String](["SYN, ACK, FIN", "SYN, SYN-ACK, ACK", "ACK, SYN, RST", "CONNECT, OK, DONE"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Three-way handshake: (1) Client kirim SYN, (2) Server balas SYN-ACK, (3) Client kirim ACK. Koneksi terbentuk."

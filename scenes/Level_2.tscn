@@ -1,0 +1,581 @@
+[gd_scene load_steps=43 format=3 uid="uid://level2"]
+
+[ext_resource type="Script" path="res://scenes/Level_2.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds_new/lv2-layer3.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds_new/lv2-layer2.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds_new/lv2-layer1.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tilesets_new/ts_l2_ground.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tilesets_new/ts_l2_ground.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tilesets_new/ts_l2_ground.png" id="7"]
+[ext_resource type="SpriteFrames" path="res://resources/pak_e_frames.tres" id="8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/pak_e_run.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/pak_e_jump.png" id="10"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy_lost_router_frames.tres" id="11"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy_packet_loss_ghost_frames.tres" id="12"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/coin.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/artifact.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/energy_cell.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/booster.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/key_port.png" id="17"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="18"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="19"]
+[ext_resource type="Script" path="res://scripts/Pickup.gd" id="20"]
+[ext_resource type="Script" path="res://scripts/Checkpoint.gd" id="21"]
+[ext_resource type="Script" path="res://scripts/QuizGate.gd" id="22"]
+[ext_resource type="PackedScene" path="res://scenes/ui/UI_HUD.tscn" id="23"]
+[ext_resource type="PackedScene" path="res://scenes/ui/UI_TouchControls.tscn" id="24"]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/backgrounds_new/lv2-layer4.png" id="25"]
+[ext_resource type="Script" path="res://scripts/PauseOverlay.gd" id="26"]
+[sub_resource type="RectangleShape2D" id="Shape_ground"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_platform"]
+size = Vector2(128, 24)
+
+[sub_resource type="CapsuleShape2D" id="Shape_player"]
+radius = 18.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="Shape_hurtbox"]
+radius = 15.0
+height = 46.0
+
+[sub_resource type="CircleShape2D" id="Shape_magnet"]
+radius = 90.0
+
+[sub_resource type="RectangleShape2D" id="Shape_killzone"]
+size = Vector2(8000, 100)
+
+[sub_resource type="RectangleShape2D" id="Shape_checkpoint"]
+size = Vector2(60, 100)
+
+[sub_resource type="RectangleShape2D" id="Shape_gate"]
+size = Vector2(80, 160)
+
+[sub_resource type="CircleShape2D" id="Shape_pickup"]
+radius = 24.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enemy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_coin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_art"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_energy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_booster"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_key"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Level_2" type="Node2D"]
+script = ExtResource("1")
+
+[node name="UI_HUD" parent="." instance=ExtResource("23")]
+
+[node name="UI_TouchControls" parent="." instance=ExtResource("24")]
+
+[node name="PauseOverlay" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("26")
+
+[node name="Bg" type="ColorRect" parent="PauseOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="LblPause" type="Label" parent="PauseOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+; ── PARALLAX BACKGROUND LEVEL 2 ──────────────────────────────────────
+[node name="ParallaxBG" type="ParallaxBackground" parent="."]
+
+[node name="LayerSky" type="ParallaxLayer" parent="ParallaxBG"]
+motion_scale = Vector2(0.04, 0.0)
+motion_mirroring = Vector2(3716, 0)
+
+[node name="SpriteSky" type="Sprite2D" parent="ParallaxBG/LayerSky"]
+texture = ExtResource("25")
+centered = false
+position = Vector2(0, -180)
+
+[node name="LayerFar" type="ParallaxLayer" parent="ParallaxBG"]
+motion_scale = Vector2(0.18, 0.05)
+motion_mirroring = Vector2(3300, 0)
+
+[node name="SpriteFar" type="Sprite2D" parent="ParallaxBG/LayerFar"]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2")
+centered = false
+position = Vector2(0, -280)
+
+[node name="LayerMid" type="ParallaxLayer" parent="ParallaxBG"]
+motion_scale = Vector2(0.42, 0.1)
+motion_mirroring = Vector2(3036, 0)
+
+[node name="SpriteMid" type="Sprite2D" parent="ParallaxBG/LayerMid"]
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("3")
+centered = false
+position = Vector2(0, -140)
+
+[node name="LayerNear" type="ParallaxLayer" parent="ParallaxBG"]
+motion_scale = Vector2(0.85, 0.18)
+motion_mirroring = Vector2(4488, 0)
+
+[node name="SpriteNear" type="Sprite2D" parent="ParallaxBG/LayerNear"]
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("4")
+centered = false
+position = Vector2(0, -520)
+
+; ── SUASANA WARNA LEVEL 2 (Neon Teal/Green) ──────────────────────────
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.7, 0.9, 0.75, 1.0)
+
+[node name="KillZone" type="Area2D" parent="."]
+position = Vector2(2000, 1200)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("Shape_killzone")
+
+; ── TERRAIN LEVEL 2 ──────────────────────────────────────────────────
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Ground1" type="StaticBody2D" parent="Terrain"]
+position = Vector2(640, 650)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Ground1"]
+texture = ExtResource("5")
+scale = Vector2(10, 1)
+modulate = Color(0.3, 1.0, 0.6, 1.0)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Ground1"]
+shape = SubResource("Shape_ground")
+scale = Vector2(10, 1)
+
+[node name="Ground2" type="StaticBody2D" parent="Terrain"]
+position = Vector2(1800, 650)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Ground2"]
+texture = ExtResource("5")
+scale = Vector2(9, 1)
+modulate = Color(0.3, 1.0, 0.6, 1.0)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Ground2"]
+shape = SubResource("Shape_ground")
+scale = Vector2(9, 1)
+
+[node name="Ground3" type="StaticBody2D" parent="Terrain"]
+position = Vector2(3000, 650)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Ground3"]
+texture = ExtResource("5")
+scale = Vector2(8, 1)
+modulate = Color(0.3, 1.0, 0.6, 1.0)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Ground3"]
+shape = SubResource("Shape_ground")
+scale = Vector2(8, 1)
+
+[node name="Ground4" type="StaticBody2D" parent="Terrain"]
+position = Vector2(4200, 650)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Ground4"]
+texture = ExtResource("5")
+scale = Vector2(9, 1)
+modulate = Color(0.3, 1.0, 0.6, 1.0)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Ground4"]
+shape = SubResource("Shape_ground")
+scale = Vector2(9, 1)
+
+[node name="Plat1" type="StaticBody2D" parent="Terrain"]
+position = Vector2(1200, 520)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Plat1"]
+texture = ExtResource("5")
+scale = Vector2(2, 0.5)
+modulate = Color(0.2, 0.9, 0.5, 0.9)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Plat1"]
+shape = SubResource("Shape_platform")
+scale = Vector2(2, 0.5)
+
+[node name="Plat2" type="StaticBody2D" parent="Terrain"]
+position = Vector2(2400, 500)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Plat2"]
+texture = ExtResource("5")
+scale = Vector2(2.5, 0.5)
+modulate = Color(0.2, 0.9, 0.5, 0.9)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Plat2"]
+shape = SubResource("Shape_platform")
+scale = Vector2(2.5, 0.5)
+
+[node name="Plat3" type="StaticBody2D" parent="Terrain"]
+position = Vector2(3600, 480)
+collision_layer = 1
+
+[node name="Vis" type="Sprite2D" parent="Terrain/Plat3"]
+texture = ExtResource("5")
+scale = Vector2(2, 0.5)
+modulate = Color(0.2, 0.9, 0.5, 0.9)
+
+[node name="Col" type="CollisionShape2D" parent="Terrain/Plat3"]
+shape = SubResource("Shape_platform")
+scale = Vector2(2, 0.5)
+
+; ── PLAYER ───────────────────────────────────────────────────────────
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(160, 540)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("18")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = ExtResource("8")
+animation = &"idle"
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("Shape_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+limit_left = 0
+limit_right = 5000
+limit_top = -400
+limit_bottom = 700
+
+[node name="Hurtbox" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 6
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Player/Hurtbox"]
+shape = SubResource("Shape_hurtbox")
+
+[node name="MagnetArea" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="MagnetShape" type="CollisionShape2D" parent="Player/MagnetArea"]
+shape = SubResource("Shape_magnet")
+
+; ── ENEMIES LEVEL 2 ─────────────────────────────────────────────────
+[node name="Enemies" type="Node2D" parent="."]
+
+; Lost Router 1
+[node name="LostRouter1" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(1400, 580)
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("19")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/LostRouter1"]
+sprite_frames = ExtResource("11")
+animation = &"walk"
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/LostRouter1"]
+shape = SubResource("Shape_player")
+
+; Packet Loss Ghost 1
+[node name="Ghost1" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(2600, 450)
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("19")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Ghost1"]
+sprite_frames = ExtResource("12")
+animation = &"float"
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Ghost1"]
+shape = SubResource("Shape_player")
+
+; ── CHECKPOINTS ──────────────────────────────────────────────────────
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="CP1" type="Area2D" parent="Checkpoints"]
+position = Vector2(800, 580)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("21")
+
+[node name="SpriteOff" type="Sprite2D" parent="Checkpoints/CP1"]
+texture = ExtResource("5")
+scale = Vector2(0.4, 1.0)
+modulate = Color(0.4, 0.4, 0.4, 1.0)
+
+[node name="SpriteOn" type="Sprite2D" parent="Checkpoints/CP1"]
+texture = ExtResource("5")
+scale = Vector2(0.4, 1.0)
+visible = false
+modulate = Color(0.2, 1.0, 0.5, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CP1"]
+shape = SubResource("Shape_checkpoint")
+
+[node name="CP2" type="Area2D" parent="Checkpoints"]
+position = Vector2(2500, 580)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("21")
+
+[node name="SpriteOff" type="Sprite2D" parent="Checkpoints/CP2"]
+texture = ExtResource("5")
+scale = Vector2(0.4, 1.0)
+modulate = Color(0.4, 0.4, 0.4, 1.0)
+
+[node name="SpriteOn" type="Sprite2D" parent="Checkpoints/CP2"]
+texture = ExtResource("5")
+scale = Vector2(0.4, 1.0)
+visible = false
+modulate = Color(0.2, 1.0, 0.5, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CP2"]
+shape = SubResource("Shape_checkpoint")
+
+; ── QUIZ GATES ───────────────────────────────────────────────────────
+[node name="QuizGates" type="Node2D" parent="."]
+
+[node name="GateL4" type="Area2D" parent="QuizGates"]
+position = Vector2(2100, 530)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("22")
+layer_id = "L4"
+gate_color = Color(0.2, 0.9, 0.6, 1.0)
+
+[node name="SpriteClosed" type="Sprite2D" parent="QuizGates/GateL4"]
+texture = ExtResource("7")
+scale = Vector2(0.5, 1.5)
+modulate = Color(0.2, 0.9, 0.6, 0.9)
+
+[node name="SpriteOpen" type="Sprite2D" parent="QuizGates/GateL4"]
+texture = ExtResource("7")
+scale = Vector2(0.5, 1.5)
+visible = false
+modulate = Color(0.3, 1.0, 0.4, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuizGates/GateL4"]
+shape = SubResource("Shape_gate")
+
+[node name="GateLabel4" type="Label" parent="QuizGates/GateL4"]
+position = Vector2(-40, -100)
+text = "LAYER 4\n(TRANSPORT)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.3, 1.0, 0.6, 1.0)
+
+[node name="GateL3" type="Area2D" parent="QuizGates"]
+position = Vector2(3400, 530)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("22")
+layer_id = "L3"
+gate_color = Color(0.1, 0.8, 0.8, 1.0)
+
+[node name="SpriteClosed" type="Sprite2D" parent="QuizGates/GateL3"]
+texture = ExtResource("7")
+scale = Vector2(0.5, 1.5)
+modulate = Color(0.1, 0.8, 0.8, 0.9)
+
+[node name="SpriteOpen" type="Sprite2D" parent="QuizGates/GateL3"]
+texture = ExtResource("7")
+scale = Vector2(0.5, 1.5)
+visible = false
+modulate = Color(0.3, 1.0, 0.4, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuizGates/GateL3"]
+shape = SubResource("Shape_gate")
+
+[node name="GateLabel3" type="Label" parent="QuizGates/GateL3"]
+position = Vector2(-40, -100)
+text = "LAYER 3\n(NETWORK)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.2, 0.9, 0.9, 1.0)
+
+; ── PICKUPS ──────────────────────────────────────────────────────────
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Coin1" type="Area2D" parent="Pickups"]
+position = Vector2(400, 500)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("20")
+type = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pickups/Coin1"]
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"default"
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/Coin1"]
+shape = SubResource("Shape_pickup")
+
+[node name="ArtifactL4" type="Area2D" parent="Pickups"]
+position = Vector2(1700, 460)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("20")
+type = 2
+item_id = "artifact_L4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pickups/ArtifactL4"]
+sprite_frames = SubResource("SpriteFrames_art")
+animation = &"default"
+scale = Vector2(0.6, 0.6)
+modulate = Color(0.2, 1.0, 0.7, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/ArtifactL4"]
+shape = SubResource("Shape_pickup")
+
+; ── PORTAL EXIT (ke Level 3) ─────────────────────────────────────────
+[node name="PortalExit" type="Area2D" parent="."]
+position = Vector2(4700, 580)
+collision_layer = 32
+collision_mask = 2
+
+[node name="Sprite" type="Sprite2D" parent="PortalExit"]
+texture = ExtResource("7")
+scale = Vector2(0.6, 1.4)
+modulate = Color(0.2, 0.9, 1.0, 0.8)
+
+[node name="Label" type="Label" parent="PortalExit"]
+position = Vector2(-60, -90)
+text = "EXIT ▶\n(Level 3)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.2, 0.9, 1.0, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalExit"]
+shape = SubResource("Shape_checkpoint")
+
+[connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
+[connection signal="body_entered" from="PortalExit" to="." method="_on_portal_body_entered"]

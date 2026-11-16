@@ -1,0 +1,243 @@
+[gd_scene load_steps=20 format=3 uid="uid://test_level_scene"]
+
+[ext_resource type="Script" path="res://scenes/TestLevel.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
+[ext_resource type="SpriteFrames" path="res://resources/pak_e_frames.tres" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/UI_HUD.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/dev/DebugPanel.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/Checkpoint.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/KillZone.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/Pickup.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/EnemyBase.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/SpamDrone.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/PopUpTurret.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/DataCorruptionPool.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/Spark.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://scenes/hazards/LaserKabel.tscn" id="14"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 16.0
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hurtbox"]
+radius = 16.0
+height = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_magnet"]
+radius = 90.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground_left"]
+size = Vector2(560, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground_right"]
+size = Vector2(600, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(240, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hazard"]
+size = Vector2(70, 24)
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="GroundLeft" type="StaticBody2D" parent="Terrain"]
+position = Vector2(280, 680)
+collision_layer = 1
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/GroundLeft"]
+offset_left = -280.0
+offset_top = -40.0
+offset_right = 280.0
+offset_bottom = 40.0
+color = Color(0.12, 0.16, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/GroundLeft"]
+shape = SubResource("RectangleShape2D_ground_left")
+
+[node name="GroundRight" type="StaticBody2D" parent="Terrain"]
+position = Vector2(1100, 680)
+collision_layer = 1
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/GroundRight"]
+offset_left = -300.0
+offset_top = -40.0
+offset_right = 300.0
+offset_bottom = 40.0
+color = Color(0.12, 0.16, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/GroundRight"]
+shape = SubResource("RectangleShape2D_ground_right")
+
+[node name="Platform1" type="StaticBody2D" parent="Terrain"]
+position = Vector2(400, 520)
+collision_layer = 1
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/Platform1"]
+offset_left = -120.0
+offset_top = -15.0
+offset_right = 120.0
+offset_bottom = 15.0
+color = Color(0.18, 0.25, 0.42, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform1"]
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="Platform2" type="StaticBody2D" parent="Terrain"]
+position = Vector2(700, 420)
+collision_layer = 1
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Terrain/Platform2"]
+offset_left = -120.0
+offset_top = -15.0
+offset_right = 120.0
+offset_bottom = 15.0
+color = Color(0.18, 0.25, 0.42, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform2"]
+shape = SubResource("RectangleShape2D_plat")
+
+; ── HAZARD UJI LAMA (Merah, Layer 4) ──────────────────────────────────
+[node name="HazardTest" type="Area2D" parent="."]
+position = Vector2(250, 628)
+collision_layer = 8
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="HazardTest"]
+offset_left = -35.0
+offset_top = -12.0
+offset_right = 35.0
+offset_bottom = 12.0
+color = Color(0.95, 0.15, 0.2, 0.9)
+
+[node name="Label" type="Label" parent="HazardTest"]
+offset_left = -35.0
+offset_top = -12.0
+offset_right = 35.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 9
+text = "HAZARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardTest"]
+shape = SubResource("RectangleShape2D_hazard")
+
+; ── HAZARDS BARU (Layer 4 Hazard) ─────────────────────────────────────
+[node name="DataCorruptionPool" parent="." instance=ExtResource("12")]
+position = Vector2(1300, 630)
+
+[node name="Spark" parent="." instance=ExtResource("13")]
+position = Vector2(480, 500)
+on_time = 1.5
+off_time = 1.5
+
+[node name="LaserKabel" parent="." instance=ExtResource("14")]
+position = Vector2(600, 360)
+on_time = 2.0
+off_time = 2.0
+length = 200.0
+
+; ── CHECKPOINT (Pickups / Triggers, Layer 6) ──────────────────────────
+[node name="Checkpoint" parent="." instance=ExtResource("6")]
+position = Vector2(400, 480)
+
+; ── KILLZONE (Di bawah level / pitfall, Layer 4) ──────────────────────
+[node name="KillZone" parent="." instance=ExtResource("7")]
+position = Vector2(680, 780)
+
+; ── ITEM PICKUPS (Layer 5) ───────────────────────────────────────────
+[node name="Pickup_Coin" parent="." instance=ExtResource("8")]
+position = Vector2(200, 620)
+jenis = 0
+
+[node name="Pickup_EnergyCell" parent="." instance=ExtResource("8")]
+position = Vector2(460, 480)
+jenis = 1
+
+[node name="Pickup_Heart" parent="." instance=ExtResource("8")]
+position = Vector2(750, 380)
+jenis = 2
+
+[node name="Pickup_Booster" parent="." instance=ExtResource("8")]
+position = Vector2(320, 620)
+jenis = 3
+
+[node name="Pickup_Artifact" parent="." instance=ExtResource("8")]
+position = Vector2(650, 480)
+jenis = 4
+item_id = "art_l1"
+
+[node name="Pickup_PortKey" parent="." instance=ExtResource("8")]
+position = Vector2(850, 380)
+jenis = 5
+item_id = "key_port_1"
+
+; ── MUSUH BASIS UJI (Layer 3 Enemy) ──────────────────────────────────
+[node name="EnemyBase" parent="." instance=ExtResource("9")]
+position = Vector2(1050, 624)
+jarak = 100.0
+
+; ── SPAM DRONES (Tiga Drone Terbang) ─────────────────────────────────
+[node name="SpamDrone1" parent="." instance=ExtResource("10")]
+position = Vector2(340, 560)
+jarak = 80.0
+move_speed = 70.0
+
+[node name="SpamDrone2" parent="." instance=ExtResource("10")]
+position = Vector2(560, 440)
+jarak = 50.0
+move_speed = 75.0
+
+[node name="SpamDrone3" parent="." instance=ExtResource("10")]
+position = Vector2(1220, 530)
+jarak = 110.0
+move_speed = 80.0
+
+; ── POPUP TURRET (Turret Diam Menembak Proyektil) ─────────────────────
+[node name="PopUpTurret" parent="." instance=ExtResource("11")]
+position = Vector2(920, 624)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(100, 580)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = ExtResource("3")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_player")
+
+[node name="Hurtbox" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hurtbox"]
+shape = SubResource("CapsuleShape2D_hurtbox")
+
+[node name="MagnetArea" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/MagnetArea"]
+shape = SubResource("CircleShape2D_magnet")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+limit_left = 0
+limit_right = 1600
+limit_top = 0
+limit_bottom = 850
+
+[node name="UI_HUD" parent="." instance=ExtResource("4")]
+
+[node name="DebugPanel" parent="." instance=ExtResource("5")]

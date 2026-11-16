@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L3"
+type = "mcq"
+question = "IP Address 192.168.1.1 termasuk kelas..."
+options = Array[String](["Kelas A", "Kelas B", "Kelas C", "Kelas D"])
+correct_index = 2
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "192.168.x.x adalah kelas C (range 192.0.0.0 - 223.255.255.255). Sering dipakai jaringan lokal."

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L7"
+type = "mcq"
+question = "Apa kepanjangan dari protokol HTTP yang bekerja pada Layer Aplikasi?"
+options = Array[String](["HyperText Transfer Protocol", "High Transfer Tech Protocol", "Host Text Transfer Program", "HyperText Transmit Program"])
+correct_index = 0
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "HTTP (HyperText Transfer Protocol) adalah protokol Layer 7 (Application) untuk transfer halaman web dan resource antar client dan web server."

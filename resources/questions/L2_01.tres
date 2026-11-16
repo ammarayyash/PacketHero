@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L2"
+type = "mcq"
+question = "MAC Address ditemukan di layer..."
+options = Array[String](["Layer 1", "Layer 2", "Layer 3", "Layer 4"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "MAC Address adalah pengalamatan fisik di Layer 2 (Data Link). Panjangnya 48 bit dan unik per perangkat."

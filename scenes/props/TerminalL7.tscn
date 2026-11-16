@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://terminal_l7_prop_001"]
+
+[ext_resource type="Script" path="res://scripts/levels/TerminalL7.gd" id="1_term"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment_new/item_checkpoint.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_term"]
+size = Vector2(44, 52)
+
+[node name="TerminalL7" type="Area2D"]
+process_mode = 3
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_term")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.8, 0.2, 1)
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_term")
+
+[node name="StatusLabel" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -45.0
+offset_right = 70.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "TERKUNCI (0/3)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="."]
+visible = false
+offset_left = -80.0
+offset_top = 28.0
+offset_right = 80.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "[E] STATUS PROTOKOL"
+horizontal_alignment = 1
+vertical_alignment = 1

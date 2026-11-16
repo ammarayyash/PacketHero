@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/ItemData.gd" id="1_item"]
+
+[resource]
+script = ExtResource("1_item")
+id = "double_jump"
+nama = "Double Jump"
+harga = 100
+deskripsi = "Membuka kemampuan melompat kedua kali di udara secara permanen (biaya 15 Energy)."
+batas = 1

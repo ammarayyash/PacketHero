@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L4"
+type = "mcq"
+question = "Apa fungsi port number di Layer Transport?"
+options = Array[String](["Mengidentifikasi perangkat fisik", "Membedakan aplikasi yang berjalan di host yang sama", "Menentukan jalur routing", "Mengatur kecepatan transmisi"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Port number mengidentifikasi proses/aplikasi spesifik di suatu host, sehingga data bisa dikirim ke program yang tepat."

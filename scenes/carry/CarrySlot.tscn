@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://carry_slot_base_001"]
+
+[ext_resource type="Script" path="res://scripts/carry/CarrySlot.gd" id="1_slot"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment_new/item_checkpoint.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slot"]
+size = Vector2(40, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.04, 0.08, 0.15, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.8, 1, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="CarrySlot" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_slot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_slot")
+
+[node name="LabelSlot" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -42.0
+offset_right = 70.0
+offset_bottom = -26.0
+theme_override_font_sizes/font_size = 10
+text = "SLOT [item_1]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BubbleLabel" type="Label" parent="."]
+visible = false
+offset_left = -110.0
+offset_top = -70.0
+offset_right = 110.0
+offset_bottom = -46.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bubble")
+theme_override_colors/font_color = Color(0.4, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "\"Minta halaman web\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="."]
+visible = false
+offset_left = -60.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "[E] MASUKKAN ITEM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="."]
+visible = false
+z_index = 10
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 120.0
+offset_bottom = -72.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bubble")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Feedback..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

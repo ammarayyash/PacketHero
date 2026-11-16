@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L6"
+type = "mcq"
+question = "SSL/TLS bekerja di layer..."
+options = Array[String](["Layer 3", "Layer 4", "Layer 6", "Layer 7"])
+correct_index = 2
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "SSL/TLS (enkripsi) bekerja di Layer 6 (Presentasi), meskipun sering diimplementasikan antara Layer 4 dan 7."

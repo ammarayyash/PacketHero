@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://moving_plat_prop_001"]
+
+[ext_resource type="Script" path="res://scripts/props/MovingPlatform.gd" id="1_plat"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tiles/level1_blue/plat_aero_sm.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(96, 20)
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+collision_layer = 1
+collision_mask = 0
+sync_to_physics = true
+script = ExtResource("1_plat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_plat")

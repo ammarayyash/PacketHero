@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L7"
+type = "mcq"
+question = "Port default yang digunakan oleh HTTPS untuk transfer data terenkripsi di Layer Aplikasi adalah..."
+options = Array[String](["80", "443", "8080", "21"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "HTTPS menggunakan port default 443 dengan keamanan TLS/SSL, sedangkan HTTP standar tanpa enkripsi menggunakan port 80. Port 21 adalah FTP."

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://enemy_spam_bot"]
+
+[ext_resource type="Script" path="res://scripts/EnemyChaser.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy_spam_bot_frames.tres" id="2"]
+
+[sub_resource type="CircleShape2D" id="Shape_body"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="Shape_hitbox"]
+radius = 26.0
+
+[node name="SpamBot" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1")
+mode = 1
+hp = 1
+patrol_range = 180.0
+patrol_speed = 75.0
+chase_speed = 135.0
+detect_radius = 300.0
+attack_radius = 45.0
+exp_reward = 20
+walk_anim = "fly"
+attack_anim = "attack"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape_body")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("Shape_hitbox")

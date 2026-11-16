@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L5"
+type = "mcq"
+question = "Layer Sesi (Session Layer) berfungsi untuk..."
+options = Array[String](["Mengirim sinyal listrik", "Membangun, memelihara, dan menutup sesi komunikasi", "Mengatur IP address", "Mengatur frame data"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Layer 5 mengatur sesi dialog antar aplikasi: membuka, menjaga, dan menutup koneksi komunikasi."

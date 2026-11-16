@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://enemy_lost_router"]
+
+[ext_resource type="Script" path="res://scripts/EnemyChaser.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://resources/enemy_lost_router_frames.tres" id="2"]
+
+[sub_resource type="RectangleShape2D" id="Shape_body"]
+size = Vector2(44, 38)
+
+[sub_resource type="RectangleShape2D" id="Shape_hitbox"]
+size = Vector2(50, 42)
+
+[node name="LostRouter" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1")
+mode = 0
+hp = 2
+patrol_range = 150.0
+patrol_speed = 55.0
+chase_speed = 110.0
+detect_radius = 260.0
+attack_radius = 50.0
+exp_reward = 25
+walk_anim = "walk"
+attack_anim = "scan"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("Shape_body")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("Shape_hitbox")

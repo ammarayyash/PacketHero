@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L6"
+type = "mcq"
+question = "Format file manakah yang melibatkan Layer Presentasi?"
+options = Array[String](["IP Address", "MAC Address", "JPEG/PNG", "Port number"])
+correct_index = 2
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Konversi format file (JPEG, PNG, MP4) adalah tanggung jawab Layer Presentasi."

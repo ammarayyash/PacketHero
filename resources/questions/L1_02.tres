@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L1"
+type = "mcq"
+question = "Perangkat di Layer Fisik adalah..."
+options = Array[String](["Switch", "Router", "Hub / Repeater", "Firewall"])
+correct_index = 2
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Hub dan Repeater bekerja di Layer 1 — mereka hanya memperkuat/mendistribusikan sinyal tanpa memahami isi frame."

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L4"
+type = "match"
+question = "Pasangkan protokol aplikasi berikut dengan nomor port default yang sesuai di Layer Transport (L4):"
+options = Array[String]([])
+correct_index = 0
+pairs_left = Array[String](["HTTP", "HTTPS", "DNS", "SSH"])
+pairs_right = Array[String](["Port 80", "Port 443", "Port 53", "Port 22"])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Di Layer Transport (L4), port number digunakan untuk mengarahkan segmen ke aplikasi yang tepat: HTTP (80), HTTPS (443), DNS (53), dan SSH (22)."

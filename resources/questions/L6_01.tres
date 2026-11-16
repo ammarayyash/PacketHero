@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L6"
+type = "mcq"
+question = "Layer Presentasi bertanggung jawab untuk..."
+options = Array[String](["Routing paket", "Enkripsi dan enkoding data", "Pembuatan koneksi fisik", "Pengalamatan MAC"])
+correct_index = 1
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Layer 6 (Presentation) menangani format data: enkripsi, dekripsi, kompresi, dan enkoding (misal: UTF-8, SSL/TLS)."

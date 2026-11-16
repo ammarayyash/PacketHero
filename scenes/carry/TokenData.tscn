@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://token_data_prop_001"]
+
+[ext_resource type="Script" path="res://scripts/carry/TokenData.gd" id="1_token"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/artifact.png" id="2_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_token"]
+radius = 18.0
+
+[node name="TokenData" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_token")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_token")
+
+[node name="LabelItem" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -24.0
+offset_right = 70.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 9
+text = "Data Mentah"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="."]
+visible = false
+offset_left = -35.0
+offset_top = 14.0
+offset_right = 35.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_font_sizes/font_size = 9
+text = "[E] AMBIL"
+horizontal_alignment = 1
+vertical_alignment = 1

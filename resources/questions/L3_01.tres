@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuizQuestion" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/QuizQuestion.gd" id="1_qq"]
+
+[resource]
+script = ExtResource("1_qq")
+layer_id = "L3"
+type = "mcq"
+question = "Perangkat yang bekerja di Layer Network adalah..."
+options = Array[String](["Switch", "Hub", "Router", "Repeater"])
+correct_index = 2
+pairs_left = Array[String]([])
+pairs_right = Array[String]([])
+order_items = Array[String]([])
+correct_order = Array[int]([])
+explanation = "Router bekerja di Layer 3 (Network) dan memutuskan jalur terbaik untuk mengirim paket antar jaringan berbeda."

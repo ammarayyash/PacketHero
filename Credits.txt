@@ -1,0 +1,34 @@
+PACKET HERO — CREDITS & ATTRIBUTIONS
+====================================
+
+Game: Packet Hero (Early Access v0.1)
+Platform: Godot Engine 4.3 (GL Compatibility)
+
+1. CODE & DESIGN:
+   - Berdasarkan GDD v1.0 dan Panduan Produksi Godot
+
+2. VISUAL ASSETS:
+   - Kenney (kenney.nl):
+     * Abstract Platformer Pack (CC0)
+     * Space Expansion UI Pack (CC0)
+     * Interface Sounds Pack (CC0)
+     * Sci-Fi Sounds Pack (CC0)
+     * RPG Audio Pack (CC0)
+   - Craftpix (craftpix.net):
+     * Cyberpunk Pixel Art GUI Pack
+     * Cyberpunk Characters & Guns Pack (Cyborg Hero)
+     * Free Medieval Tileset Pack
+   - Robot Warfare Asset Pack (Robots & Projectiles)
+   - Background AI Generated Parallax Artwork (Level 1 - Level 3)
+
+3. AUDIO ASSETS:
+   - Musik Background:
+     * Leberch - Ambient Cinematic (Level 1)
+     * Leberch - Babylon Meditation (Level 2)
+     * Leberch - Deep Night Sleep (Level 3)
+   - SFX:
+     * Kenney Interface Sounds (CC0)
+     * Kenney Sci-Fi Sounds (CC0)
+
+4. FONTS:
+   - CyberpunkCraftpixPixel.otf (Craftpix)
